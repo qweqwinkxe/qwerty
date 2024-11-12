@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Наши продукты</title>
+    <link rel="stylesheet" href="../css/view-product.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-left">
+        <div class="header-title">StreetCars</div>
+        <a href="add-product.html" class="action-btn">Добавить новый продукт</a>
+        <a href="#" id="history-product-btn" class="action-btn">История</a>
+      </div>
+
+      <div class="header-right">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Поиск..."
+          class="search-bar"
+        />
+        <span id="product-count" class="product-count">0 / 0</span>
+        <select id="manufacturer-filter" class="dropdown">
+          <option value="">Все производители</option>
+        </select>
+        <select id="sort" class="dropdown">
+          <option value="">Без сортировки</option>
+          <option value="asc">По возрастанию</option>
+          <option value="desc">По убыванию</option>
+        </select>
+      </div>
+    </header>
+
+    <div id="product-list" class="product-grid"></div>
+
+    <script src="../js/view-product.js"></script>
+  </body>
+</html>

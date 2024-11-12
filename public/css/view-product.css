@@ -1,0 +1,219 @@
+body {
+  font-family: 'Verdana', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e9eff1; /* Updated background color */
+  color: #444;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px; /* Adjusted padding */
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* Increased height */
+  background: #34495e; /* New background color */
+  color: #ecf0f1;
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.header-title {
+  font-size: 2em; /* Larger font size */
+  padding-right: 15px;
+  font-weight: bold;
+  color: #ffdc55; /* Changed to yellow */
+  transition: color 0.3s ease;
+  margin-bottom: 10px; /* Increased spacing around title */
+}
+
+.header-title:hover {
+  color: #ffea00; /* Bright hover color */
+}
+
+.header-content {
+  display: flex; /* Flex container for buttons and search */
+  justify-content: space-between; /* Space between elements */
+  width: 90%; /* Width for inner content */
+  align-items: center; /* Center vertically */
+}
+
+.header-left {
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+.header-right {
+  display: flex; /* Flex container for buttons */
+  align-items: center;
+  gap: 15px; /* Adjusted gap between buttons */
+  margin-top: 10px; /* Added top margin */
+}
+
+a, .action-btn {
+  padding: 12px 22px; /* Increased padding for buttons */
+  margin-right: 10px;
+  background-color: #3498db; /* Changed button color to light blue */
+  color: white;
+  text-decoration: none;
+  border-radius: 30px; /* Rounded buttons */
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+a:hover, .action-btn:hover {
+  background-color: #3498db; /* Darker hover color */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.search-bar {
+  padding: 10px;
+  border-radius: 20px; /* Increased roundness */
+  border: 2px solid #bdc3c7;
+  font-size: 1em;
+  width: 200px; /* Adjusted width */
+  transition: width 0.3s ease, border-color 0.3s ease;
+}
+
+.search-bar:focus {
+  width: 250px; /* Increased focused width */
+  border-color: #3498db; /* New focus border color */
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Updated min width */
+  gap: 30px; /* Increased gap for clarity */
+  padding: 30px; /* Increased padding around grid */
+  max-width: 1300px; /* Wider maximum width */
+  width: 100%;
+  margin: 20px auto; /* Centered with margin */
+}
+
+/* Animation and Product Styles Remain the Same below */
+
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      transform: translateY(30px); /* Increased initial offset */
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.product {
+  background-color: #fff; /* Keeping product card color as is */
+  border-radius: 15px; /* Updated to a larger border radius */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px; /* Increased padding for products */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.product:hover {
+  transform: translateY(-5px) scale(1.02); /* Smaller scale increase */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Increased shadow */
+}
+
+.product img {
+  width: 100%;
+  height: 130px; /* Keeping image size the same */
+  object-fit: contain;
+  border-radius: 12px; /* Slightly adjusted border */
+  margin-bottom: 10px; /* Reduced margin */
+}
+
+.product h3 {
+  font-size: 1.3em; /* Increased title size for better visibility */
+  color: #333;
+  margin: 10px 0;
+  font-weight: normal; /* Changed to normal weight */
+}
+
+.product p {
+  font-size: 0.9em; /* Slightly smaller font for descriptions */
+  color: #666;
+  margin: 8px 0;
+  line-height: 1.6; /* Increased line height for readability */
+}
+
+.product .price-amount {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #27ae60; /* Green color for price */
+}
+
+.product .manufacturer {
+  font-style: italic;
+  color: #888; /* Slightly lighter color */
+}
+
+.action-btn.edit {
+  background-color: #009000; /* Neutral Edit button color */
+  color: white;
+  border: none; /* Removed border */
+}
+
+.action-btn.delete {
+  background-color: #e74c3c; /* Strong warning color for delete */
+  color: white;
+  border: none; /* Removed border */
+}
+
+.product.inactive {
+  background-color: #bdc3c7; /* Light gray for inactive */
+  opacity: 0.7;
+}
+
+.product.selected {
+  border: 2px solid #f39c12; /* Orange for selected state */
+  background-color: #ffefdb; /* Light selected background */
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .header-title {
+      font-size: 1.6em; /* Adjust font size for mobile */
+  }
+
+  .header-content {
+      flex-direction: column; /* Stack elements vertically */
+      align-items: center; /* Center items */
+  }
+
+  .header-left, .header-right {
+      margin: 5px 0; /* Margin around left and right sections */
+  }
+
+  .action-btn {
+      font-size: 0.9em;
+      padding: 8px 12px; /* Reduced padding for mobile */
+  }
+
+  .search-bar {
+      width: 140px; /* Reduced width for mobile */
+  }
+
+  .product-grid {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Smaller items on mobile */
+  }
+}

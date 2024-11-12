@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AttachedProduct {
+  MainProductID                                      Int
+  AttachedProductID                                  Int
+  Product_AttachedProduct_AttachedProductIDToProduct Product @relation("AttachedProduct_AttachedProductIDToProduct", fields: [AttachedProductID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+  Product_AttachedProduct_MainProductIDToProduct     Product @relation("AttachedProduct_MainProductIDToProduct", fields: [MainProductID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([MainProductID, AttachedProductID])
+}
+
+model Client {
+  ID               Int             @id @default(autoincrement())
+  FirstName        String          @db.VarChar(50)
+  LastName         String          @db.VarChar(50)
+  Patronymic       String?         @db.VarChar(50)
+  Birthday         DateTime?       @db.Date
+  RegistrationDate DateTime        @db.Timestamp(6)
+  Email            String?         @db.VarChar(255)
+  Phone            String          @db.VarChar(20)
+  GenderCode       String          @db.Char(1)
+  PhotoPath        String?         @db.VarChar(1000)
+  Gender           Gender          @relation(fields: [GenderCode], references: [Code], onDelete: NoAction, onUpdate: NoAction)
+  ClientService    ClientService[]
+  TagOfClient      TagOfClient[]
+}
+
+model ClientService {
+  ID                Int                 @id @default(autoincrement())
+  ClientID          Int
+  ServiceID         Int
+  StartTime         DateTime            @db.Timestamp(6)
+  Comment           String?
+  Client            Client              @relation(fields: [ClientID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+  Service           Service             @relation(fields: [ServiceID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+  DocumentByService DocumentByService[]
+  ProductSale       ProductSale[]
+}
+
+model DocumentByService {
+  ID              Int           @id @default(autoincrement())
+  ClientServiceID Int
+  DocumentPath    String        @db.VarChar(1000)
+  ClientService   ClientService @relation(fields: [ClientServiceID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Gender {
+  Code   String   @id @db.Char(1)
+  Name   String?  @db.VarChar(10)
+  Client Client[]
+}
+
+model Manufacturer {
+  ID        Int       @id @default(autoincrement())
+  Name      String    @db.VarChar(100)
+  StartDate DateTime? @db.Date
+  Product   Product[]
+}
+
+model Product {
+  ID                                                         Int               @id @default(autoincrement())
+  Title                                                      String            @db.VarChar(100)
+  Cost                                                       Decimal           @db.Decimal(19, 4)
+  Description                                                String?
+  Photo                                                      Bytes?
+  IsActive                                                   Boolean
+  ManufacturerID                                             Int?
+  AttachedProduct_AttachedProduct_AttachedProductIDToProduct AttachedProduct[] @relation("AttachedProduct_AttachedProductIDToProduct")
+  AttachedProduct_AttachedProduct_MainProductIDToProduct     AttachedProduct[] @relation("AttachedProduct_MainProductIDToProduct")
+  Manufacturer                                               Manufacturer?     @relation(fields: [ManufacturerID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+  ProductSale                                                ProductSale[]
+}
+
+model ProductSale {
+  ID              Int            @id @default(autoincrement())
+  SaleDate        DateTime       @db.Timestamp(6)
+  ProductID       Int
+  Quantity        Int
+  ClientServiceID Int?
+  ClientService   ClientService? @relation(fields: [ClientServiceID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+  Product         Product        @relation(fields: [ProductID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Service {
+  ID                Int             @id @default(autoincrement())
+  Title             String          @db.VarChar(100)
+  Cost              Decimal         @db.Decimal(19, 4)
+  DurationInSeconds Int
+  Description       String?
+  Discount          Decimal?        @db.Decimal
+  Photo             Bytes?
+  ClientService     ClientService[]
+}
+
+model Tag {
+  ID          Int           @id @default(autoincrement())
+  Title       String        @db.VarChar(30)
+  Color       String        @db.Char(6)
+  TagOfClient TagOfClient[]
+}
+
+model TagOfClient {
+  ClientID Int
+  TagID    Int
+  Client   Client @relation(fields: [ClientID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+  Tag      Tag    @relation(fields: [TagID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([ClientID, TagID])
+}

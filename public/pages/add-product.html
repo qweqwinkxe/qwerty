@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Добавить продукт</title>
+    <link rel="stylesheet" href="../css/add-product.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div
+        class="header-title"
+        onclick="window.location.href='view-product.html'"
+      >
+        StreetCars
+      </div>
+    </header>
+
+    <main class="container">
+      <h1 class="form-title">Добавить новый продукт</h1>
+      <form id="add-product-form" class="form">
+        <div class="form-group">
+          <label for="photo">Фото продукта</label>
+          <input type="file" id="photo" name="photo" accept="image/*" />
+          <img
+            id="previewPhoto"
+            alt="Текущее фото продукта"
+            style="display: none; max-width: 200px; margin-top: 10px"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="title">Название продукта</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Введите название"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="cost">Цена</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            min="0"
+            step="0.01"
+            placeholder="Введите цену"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Описание</label>
+          <textarea
+            id="description"
+            name="description"
+            placeholder="Введите описание"
+          ></textarea>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="isActive" name="isActive" />
+          <label for="isActive">Активен</label>
+        </div>
+
+        <div class="form-group">
+          <label for="manufacturer">Производитель</label>
+          <select id="manufacturer" class="dropdown">
+            <option value="">Выберите производителя</option>
+          </select>
+        </div>
+
+        <div class="form-buttons">
+          <button type="submit" id="submit-product-btn" class="btn primary">
+            Сохранить
+          </button>
+          <button
+            type="button"
+            id="cancel-product-btn"
+            class="btn secondary"
+            onclick="window.location.href='view-product.html'"
+          >
+            Отмена
+          </button>
+        </div>
+      </form>
+    </main>
+
+    <script src="../js/add-product.js"></script>
+  </body>
+</html>

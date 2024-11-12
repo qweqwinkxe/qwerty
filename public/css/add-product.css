@@ -1,0 +1,161 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e0f7fa;
+  color: #444;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.container {
+  max-width: 800px;  /* Increased max width */
+  width: 90%;        /* Adjusted width for better spacing */
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 50px;     /* Increased padding for more whitespace */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.7s ease-in-out forwards;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;  /* Increased header height */
+  background: #34495e; /* Changed background color to #444 */
+  color: #ffeb3b; /* Changed text color to yellow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.header-title {
+  font-size: 2.2em;  /* Increased font size */
+  font-weight: bold;
+  cursor: pointer;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s, color 0.3s;
+}
+
+.header-title:hover {
+  transform: translateY(-3px);
+  color: #ffdc55; /* Slightly lighter yellow on hover */
+}
+
+.form-title {
+  font-size: 1.8em;
+  color: #444;
+  text-align: center;
+  margin-bottom: 30px;  /* Increased bottom margin */
+}
+
+.form {
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;  /* Increased margin for more space */
+}
+
+.form-group label {
+  font-weight: 700;
+  margin-bottom: 10px;  /* Increased margin for better spacing */
+  color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+  padding: 16px;   /* Increased padding */
+  border-radius: 12px;
+  border: 2px solid #bdbdbd;
+  font-size: 1em;
+  transition: border 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border: 2px solid #1e88e5;
+  outline: none;
+}
+
+.form-group textarea {
+  resize: none;
+  min-height: 150px;  /* Increased minimum height for text area */
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.form-group input[type="checkbox"] {
+  width: 22px;  /* Slightly increased checkbox size */
+  height: 22px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;  /* Increased gap for better spacing */
+}
+
+.btn {
+  flex: 1;
+  padding: 16px;  /* Increased button padding */
+  font-size: 1em;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  color: white;
+}
+
+.btn.primary {
+  background-color: #1e88e5;
+}
+
+.btn.primary:hover {
+  background-color: #1565c0;
+}
+
+.btn.secondary {
+  background-color: #546e7a;
+}
+
+.btn.secondary:hover {
+  background-color: #455a64;
+}
+
+@keyframes slideIn {
+  0% {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .header-title {
+      font-size: 1.8em;  /* Adjusted smaller header title size for mobile */
+  }
+
+  .form-title {
+      font-size: 1.6em;  /* Adjusted smaller form title size for mobile */
+  }
+}
